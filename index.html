@@ -30,7 +30,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;ba
 <body>
 <header class="topbar">
   <a class="brand" href="#top"><div class="brand-mark"></div><div>agentai.meme<span>AGENT ID LAUNCHPAD</span></div></a>
-  <nav class="nav"><a href="#top" class="active">首页</a><a href="#launchpad">发射台</a><a href="#trade" data-app-tab="trade">交易</a><a href="#platform">平台币</a><a href="#rules">规则</a></nav>
+  <nav class="nav"><a href="#top" class="active">首页</a><a href="#launchpad">发射台</a><a href="trade.html">交易</a><a href="#platform">平台币</a><a href="#rules">规则</a></nav>
   <div class="nav-cta"><button class="wallet" id="walletBtn">连接钱包</button></div>
 </header>
 <main id="top">
@@ -53,7 +53,7 @@ function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show'
 function openWallet(){if(connected){connected=false;$('#walletBtn').textContent='连接钱包';$('#walletBtn').classList.remove('connected');$('#tradeStatus').textContent='未连接钱包';$('#tradeBtn').textContent='连接钱包后交易';toast('已断开演示钱包')}else $('#modal').classList.add('show')}
 $('#walletBtn').onclick=openWallet;$('#closeModal').onclick=()=>$('#modal').classList.remove('show');$('#modal').onclick=e=>{if(e.target.id==='modal')$('#modal').classList.remove('show')};$$('.wallet-choice').forEach(b=>b.onclick=()=>{connected=true;$('#walletBtn').textContent='0xA2…7F91';$('#walletBtn').classList.add('connected');$('#tradeStatus').textContent='Agent ID 已验证';$('#tradeBtn').textContent='提交交易';$('#swapBtn').textContent='兑换';$('#modal').classList.remove('show');toast('钱包已连接，Agent ID 验证通过 ✓')});
 $$('.app-tabs button').forEach(btn=>btn.onclick=()=>{const id=btn.dataset.tab;$$('.app-tabs button').forEach(x=>x.classList.toggle('active',x===btn));$$('.app-view').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelector('.app-shell').scrollIntoView({behavior:'smooth',block:'start'})});
-function openTrade(){$('[data-tab="trade"]').click()};window.openTrade=openTrade;
+function openTrade(){location.href='trade.html'};window.openTrade=openTrade;
 $('#subBnb').oninput=e=>$('#subEstimate').textContent=`预计获得 ${(Number(e.target.value||0)/.008).toLocaleString(undefined,{maximumFractionDigits:2})} $AGENT`;
 $('#subscribeBtn').onclick=()=>{if(!connected)return toast('请先连接钱包，再进行平台币认购');toast('认购订单已提交，等待钱包确认')};
 $('#createBtn').onclick=()=>{if(!$('#tokenName').value||!$('#tokenSymbol').value)return toast('请先填写项目名称和代币符号');if(!$('#riskCheck').checked)return toast('请勾选风险确认');toast('项目已提交审核，审核通过后即可创建发射')};
